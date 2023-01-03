@@ -4,6 +4,7 @@ import 'package:todo_1/screens/tasks/task_model.dart';
 import 'package:todo_1/styles/my_theme.dart';
 
 import '../../components/components.dart';
+import '../../database/database.dart';
 
 class AddTask extends StatefulWidget {
   @override
@@ -94,24 +95,25 @@ class _AddTaskState extends State<AddTask> {
                     height: 10,
                   ),
                   ElevatedButton(
+
                       onPressed: () {
-                      //   if (formKey.currentState!.validate()) {
-                      //     TaskData task = TaskData(
-                      //         title: titleController.text,
-                      //         date: DateUtils.dateOnly(sellectedDate).microsecondsSinceEpoch,
-                      //         id: 'dsgvbsdgb',
-                      //         description: descriptionController.text);
-                      //     showLoading(context, 'Loading.....');
-                      //     addTaskToFirebaseFirestore(task).then((value) {
-                      //       hideLoading(context);
-                      //       showMessage(context, 'Task Added ', 'OK', () {
-                      //         Navigator.pop(context);
-                      //         Navigator.pop(context);
-                      //       }, negBtn: 'Cancel', negAction: () {});
-                      //     }).catchError((error) {
-                      //       print(error);
-                      //     });
-                      //   }
+                        if (formKey.currentState!.validate()) {
+                          TaskData task = TaskData(
+                              title: titleController.text,
+                              date: DateUtils.dateOnly(sellectedDate).microsecondsSinceEpoch,
+                              id: 'dsgvbsdgb',
+                              description: descriptionController.text);
+                          showLoading(context, 'Loading.....');
+                          addTaskToFirebaseFirestore(task).then((value) {
+                            hideLoading(context);
+                            showMessage(context, 'Task Added ', 'OK', () {
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                            }, negBtn: 'Cancel', negAction: () {});
+                          }).catchError((error) {
+                            print(error);
+                          });
+                        }
                       },
 
                       child: Text('Add Task'))

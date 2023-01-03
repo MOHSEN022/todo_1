@@ -55,7 +55,9 @@ class _HomeLayoutState extends State<HomeLayout> {
   var tabs =[TasksTab(),SettingsTab()];
 
   void showAddTaskBottomSheet() {
-    showModalBottomSheet(context: context, builder: (buildContext){
+    showModalBottomSheet(
+        isScrollControlled: true,
+        context: context, builder: (buildContext){
       return AddTask();
     });
   }}
