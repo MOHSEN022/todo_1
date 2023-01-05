@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../providers/setting_provider.dart';
 
 class ThemeBottomSheet extends StatefulWidget {
 
@@ -10,31 +13,30 @@ class ThemeBottomSheet extends StatefulWidget {
 class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
   @override
   Widget build(BuildContext context) {
-    // var settingsProvider = Provider.of<SettingsProvider>(context);
+    var settingsProvider = Provider.of<SettingsProvider>(context);
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           InkWell(
-            child: Container(color: Colors.blue,height: 40,),
             onTap: () {
-              // settingsProvider.changeTheme(ThemeMode.light);
+              settingsProvider.changeTheme(ThemeMode.light);
             },
-            // child: settingsProvider.isDarkMode()
-            //     ? getUnsellectedItem(AppLocalizations.of(context)!.light_theme)
-            //     : getSellectedItem(AppLocalizations.of(context)!.light_theme)
+            child: settingsProvider.isDarkMode()
+                ? getUnsellectedItem(AppLocalizations.of(context)!.light)
+                : getSellectedItem(AppLocalizations.of(context)!.light)
 
           ),
-          SizedBox(height: 50,),
+          const SizedBox(height: 50,),
           InkWell(
-            child: Container(color: Colors.blue,height: 40,),
             onTap: () {
-              // settingsProvider.changeTheme(ThemeMode.dark);
+              settingsProvider.changeTheme(ThemeMode.dark);
             },
-            // child: settingsProvider.isDarkMode()
-            //     ? getSellectedItem(AppLocalizations.of(context)!.dark_theme)
-            //     : getUnsellectedItem(AppLocalizations.of(context)!.dark_theme)
+            child: settingsProvider.isDarkMode()
+                ? getSellectedItem(AppLocalizations.of(context)!.dark)
+                : getUnsellectedItem(AppLocalizations.of(context)!.dark)
+
             // ,
           )
 
@@ -51,8 +53,8 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
       children: [
         Text(
           title,
-          // style: Theme.of(context).textTheme.subtitle2?.
-          // copyWith(color:Theme.of(context).dividerColor),
+          style: Theme.of(context).textTheme.subtitle2?.
+          copyWith(color:Theme.of(context).dividerColor),
         ),
         Icon(Icons.check, color: Theme.of(context).dividerColor,),
       ],

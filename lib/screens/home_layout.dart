@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_1/screens/settings/settings_tab.dart';
 import 'package:todo_1/screens/tasks/add_task_botttom_sheet.dart';
 import 'package:todo_1/screens/tasks/tasks_tab.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../styles/my_theme.dart';
 
@@ -20,7 +21,7 @@ class _HomeLayoutState extends State<HomeLayout> {
     return SafeArea(
         child:Scaffold(
           appBar: AppBar(
-            title: Text('TODO'),
+            title: Text(AppLocalizations.of(context)!.app_title),
           ),
           bottomNavigationBar: BottomAppBar(
             shape: const CircularNotchedRectangle(),
@@ -32,8 +33,8 @@ class _HomeLayoutState extends State<HomeLayout> {
                 setState(() {});
               },
               items: [
-                BottomNavigationBarItem(icon: Icon(Icons.list),label: 'Tasks list'),
-                BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+                BottomNavigationBarItem(icon: Icon(Icons.list),label: AppLocalizations.of(context)!.tasks_list),
+                BottomNavigationBarItem(icon: Icon(Icons.settings), label: AppLocalizations.of(context)!.settings),
               ],
             ),
           ),
@@ -60,4 +61,5 @@ class _HomeLayoutState extends State<HomeLayout> {
         context: context, builder: (buildContext){
       return AddTask();
     });
-  }}
+  }
+}

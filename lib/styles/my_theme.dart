@@ -16,7 +16,7 @@ class MyTheme {
       headline3: TextStyle(color: allBlack,fontWeight: FontWeight.normal,fontSize: 18),
       headline4: TextStyle(color: allBlue,fontWeight: FontWeight.bold,fontSize: 18),
     ),
-    appBarTheme: AppBarTheme(color: allBlue,elevation: 0 ),
+    appBarTheme: AppBarTheme(color: allBlue,elevation: 0 ,),
 
     scaffoldBackgroundColor: lightBG,
     bottomSheetTheme: const BottomSheetThemeData(

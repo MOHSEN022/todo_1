@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_1/screens/settings/theme_bottom_sheet.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../providers/setting_provider.dart';
 import 'language_bottom_sheet.dart';
 
 class SettingsTab extends StatefulWidget {
@@ -14,19 +17,19 @@ class SettingsTab extends StatefulWidget {
 class _SettingsTabState extends State<SettingsTab> {
   @override
   Widget build(BuildContext context) {
-    // var settingsProvider = Provider.of<SettingsProvider>(context);
+    var settingsProvider = Provider.of<SettingsProvider>(context);
     return Container(
       padding: EdgeInsets.all(12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
-          Text('theme'
-            // style: Theme.of(context).textTheme.subtitle1,
+          Text(AppLocalizations.of(context)!.theme,
+            style: Theme.of(context).textTheme.subtitle1,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           InkWell(
@@ -40,22 +43,22 @@ class _SettingsTabState extends State<SettingsTab> {
                   border: Border.all(
                       color: Theme.of(context).dividerColor, width: 2),
                   color: Color.fromARGB(1, 1, 1, 1)),
-              child: Text('theme'
-                // settingsProvider.isDarkMode()
-                //     ?AppLocalizations.of(context)!.dark_theme
-                //     :AppLocalizations.of(context)!.light_theme,
-                // style: Theme.of(context).textTheme.subtitle2,
+              child: Text(
+                settingsProvider.isDarkMode()
+                    ?AppLocalizations.of(context)!.dark
+                    :AppLocalizations.of(context)!.light,
+                style: Theme.of(context).textTheme.subtitle2,
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
-          Text('language'
-            // AppLocalizations.of(context)!.language,
-            // style: Theme.of(context).textTheme.subtitle1,
+          Text(
+            AppLocalizations.of(context)!.language,
+            style: Theme.of(context).textTheme.subtitle1,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           InkWell(
@@ -69,11 +72,11 @@ class _SettingsTabState extends State<SettingsTab> {
                   border: Border.all(
                       color: Theme.of(context).dividerColor, width: 2),
                   color: Color.fromARGB(1, 1, 1, 1)),
-              child: Text('english'
-                // settingsProvider.currentLanguage == 'en'
-                //     ? AppLocalizations.of(context)!.english
-                //     : AppLocalizations.of(context)!.arabic,
-                // style: Theme.of(context).textTheme.subtitle2,
+              child: Text(
+                settingsProvider.currentLanguage == 'en'
+                    ? AppLocalizations.of(context)!.english
+                    : AppLocalizations.of(context)!.arabic,
+                style: Theme.of(context).textTheme.subtitle2,
               ),
             ),
           ),

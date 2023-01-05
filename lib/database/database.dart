@@ -22,6 +22,20 @@ Stream<QuerySnapshot<TaskData>> getTasksFromFirestore(DateTime dateTime) {
       isEqualTo: DateUtils.dateOnly(dateTime).microsecondsSinceEpoch)
       .snapshots();
 }
-Future<void> deleteTaskFromFirestore(String id){
-  return getTasksCollection().doc(id).delete();
+
+Future<void> deleteTaskFromFirestore(TaskData task){
+  return getTasksCollection().doc(task.id).delete();
 }
+
+Future<void> editIsdoneInFirebase(TaskData task){
+  return getTasksCollection().doc(task.id).update({'isDone': !task.isDone,});
+}
+
+Future<void> updateTaskInFirebase(TaskData task){
+  return getTasksCollection().doc(task.id).update(task.toJson());
+}
+
+Future<void> deleteTaskInFirebase(TaskData task){
+  return getTasksCollection().doc(task.id).delete();
+}
+

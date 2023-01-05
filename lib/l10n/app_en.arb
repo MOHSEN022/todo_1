@@ -1,0 +1,32 @@
+{
+"app_title" : "TODO",
+"task_title" : "Task title",
+"task_description" : "Task description",
+"done" : "Done",
+"delete" : "Delete",
+"edit" : "edit",
+"select_time" : "SELECT DATE",
+"add_new_task" : "ADD NEW TASK",
+"task_added" : "Task Added Successfully",
+"ok" : "Ok",
+"cancel" : "Cancel",
+"loading" : "Loading",
+"language" : "LANGUAGE",
+"english" : "ENGLISH",
+"arabic" : "ARABIC",
+"theme" : "THEME",
+"light" : "LIGHT",
+"dark" : "DARK",
+"edit_task" : "EDIT TASK",
+"save_changes" : "SAVE CHANGES",
+"tasks_list" : "Tasks List",
+"settings" : "Settings",
+"enter_valid_title" : "Please, Enter valid title",
+"enter_valid_description" : "Please, Enter valid description",
+"add_task" : "ADD TASK",
+"went_wrong" : "Something went wrong",
+"no_tasks_day" : "No tasks for this day",
+"changes_saved" : "Changes saved successfully"
+}
+
+

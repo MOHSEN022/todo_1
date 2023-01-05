@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/setting_provider.dart';
 
 class LanguageBottomSheet extends StatefulWidget {
 
@@ -10,31 +14,29 @@ class LanguageBottomSheet extends StatefulWidget {
 class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
   @override
   Widget build(BuildContext context) {
-    // var settingsProvider = Provider.of<SettingsProvider>(context);
+    var settingsProvider = Provider.of<SettingsProvider>(context);
     return Container(
       padding: EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           InkWell(
-            child: Container(color: Colors.blue,height: 40,),
             onTap: (){
-              // settingsProvider.changeLocal('en');
+              settingsProvider.changeLocale('en');
             },
-
-            // child: settingsProvider.currentLanguage== 'en'?
-            // getSellectedItem('English'):getUnsellectedItem('English'),
+            child: settingsProvider.currentLanguage == 'en'
+                ? getSellectedItem(AppLocalizations.of(context)!.english)
+                : getUnsellectedItem(AppLocalizations.of(context)!.english),
           ),
           SizedBox(height: 50,),
           InkWell(
-            child: Container(color: Colors.blue,height: 40,),
             onTap: (){
-              // settingsProvider.changeLocal('ar');
+              settingsProvider.changeLocale('ar');
             },
-            // child: settingsProvider.currentLanguage== 'ar'?
-            // getSellectedItem('العربية'):getUnsellectedItem('العربية'),
+            child: settingsProvider.currentLanguage == 'ar'
+                ? getSellectedItem(AppLocalizations.of(context)!.arabic)
+                : getUnsellectedItem(AppLocalizations.of(context)!.arabic),
           )
-
         ],
       ),
     );
@@ -48,7 +50,10 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.subtitle2?.copyWith(color: Theme.of(context).dividerColor),
+          style: Theme.of(context)
+              .textTheme
+              .subtitle2
+              ?.copyWith(color: Theme.of(context).dividerColor),
         ),
         Icon(Icons.check,color: Theme.of(context).dividerColor,),
       ],

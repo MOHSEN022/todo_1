@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_1/screens/tasks/task_model.dart';
 import 'package:todo_1/styles/my_theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../components/components.dart';
 import '../../database/database.dart';
@@ -23,13 +24,13 @@ class _AddTaskState extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
+      child: Container(height: MediaQuery.of(context).size.height*0.9,
         padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Add New Task',
+              AppLocalizations.of(context)!.add_new_task,
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
             SizedBox(
@@ -41,42 +42,42 @@ class _AddTaskState extends State<AddTask> {
                   TextFormField(
                     validator: (text) {
                       if (text == '') {
-                        return 'Please Enter title';
+                        return AppLocalizations.of(context)!.enter_valid_title;
                       }
                       return null;
                     },
                     controller: titleController,
                     decoration: InputDecoration(
-                        hintText: 'Task title',
+                        hintText: AppLocalizations.of(context)!.task_title,
                         border: OutlineInputBorder(
                             borderSide: BorderSide(color: MyTheme.allBlack))),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     validator: (text) {
                       if (text == '') {
-                        return 'Please Enter description';
+                        return AppLocalizations.of(context)!.enter_valid_description;
                       }
                       return null;
                     },
                     maxLines: 3,
                     controller: descriptionController,
                     decoration: InputDecoration(
-                        hintText: 'Task description',
+                        hintText: AppLocalizations.of(context)!.task_description,
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: Theme.of(context).primaryColor))),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
-                    'Select Date',
+                    AppLocalizations.of(context)!.select_time,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   InkWell(
@@ -91,7 +92,7 @@ class _AddTaskState extends State<AddTask> {
                           fontSize: 30),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   ElevatedButton(
@@ -101,22 +102,24 @@ class _AddTaskState extends State<AddTask> {
                           TaskData task = TaskData(
                               title: titleController.text,
                               date: DateUtils.dateOnly(sellectedDate).microsecondsSinceEpoch,
-                              id: 'dsgvbsdgb',
                               description: descriptionController.text);
-                          showLoading(context, 'Loading.....');
+                          showLoading(context, AppLocalizations.of(context)!.loading);
                           addTaskToFirebaseFirestore(task).then((value) {
                             hideLoading(context);
-                            showMessage(context, 'Task Added ', 'OK', () {
+                            showMessage(context,
+                                AppLocalizations.of(context)!.task_added,
+                                AppLocalizations.of(context)!.ok,
+                                    () {
                               Navigator.pop(context);
                               Navigator.pop(context);
-                            }, negBtn: 'Cancel', negAction: () {});
+                            }, negBtn: AppLocalizations.of(context)!.cancel, negAction: () {});
                           }).catchError((error) {
                             print(error);
                           });
                         }
                       },
 
-                      child: Text('Add Task'))
+                      child: Text(AppLocalizations.of(context)!.add_task))
                 ]))
           ],
         ),
